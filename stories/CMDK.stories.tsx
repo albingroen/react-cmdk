@@ -10,7 +10,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<CMDKProps> = args => {
+const Template: Story<CMDKProps> = (args) => {
   const options: CMDKOption[] = [
     {
       key: 'general',
