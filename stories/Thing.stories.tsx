@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
+import CMDK from '../src';
+import { CMDKOption, CMDKProps } from '../src/types';
 import { Meta, Story } from '@storybook/react';
-import CMDK, { CMDKOption, CMDKProps } from '../src';
 
 const meta: Meta = {
   title: 'CMDK',
@@ -10,45 +11,50 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story<CMDKProps> = (args) => {
-  const [open, onOpenChange] = useState(true);
-
   const options: CMDKOption[] = [
     {
       key: 'create-project',
       label: 'Create new project',
       shortcut: ['⇧', '⌘', 'N'],
-      type: 'settings',
+      icon: 'Plus',
     },
     {
-      key: 'create-account',
-      label: 'Create new acount',
+      key: 'account',
+      label: 'My account',
       shortcut: ['⇧', '⌘', 'A'],
-      type: 'settings',
+      icon: 'User',
     },
     {
-      key: 'settings',
+      key: 'preferences',
       label: 'Preferences',
       shortcut: ['⌘', ','],
-      type: 'settings',
+      icon: 'Cog',
+    },
+    {
+      key: 'billing',
+      label: 'Billing settings',
+      shortcut: ['⇧', '⌘', 'B'],
+      icon: 'CreditCard',
+    },
+    {
+      key: 'release-notes',
+      label: 'Release notes',
+      shortcut: ['⇧', '⌘', 'R'],
+      icon: 'Collection',
+    },
+    {
+      key: 'contact',
+      label: 'Contact',
+      shortcut: ['⇧', '⌘', 'C'],
+      icon: 'Chat',
     },
     {
       key: 'log-out',
       label: 'Log out',
-      type: 'settings',
+      icon: 'Logout',
     },
   ];
-  return (
-    <div>
-      <button
-        onClick={() => {
-          onOpenChange(true);
-        }}
-      >
-        Toggle CMDK
-      </button>
-      <CMDK onOpenChange={onOpenChange} options={options} open={open} />
-    </div>
-  );
+  return <CMDK options={options} />;
 };
 
 export const Default = Template.bind({});
