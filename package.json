@@ -1,4 +1,6 @@
 {
+  "name": "react-cmdk",
+  "description": "A fast, accessible, and pretty React.js command palette component",
   "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -22,14 +24,21 @@
   "peerDependencies": {
     "react": ">=16"
   },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
+  "keywords": [
+    "react",
+    "tailwindcss",
+    "radix-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/albingroen/react-cmdk"
   },
-  "name": "react-cmdk",
-  "author": "Albin Groen",
+  "website": "https://github.com/albingroen/react-cmdk",
+  "author": {
+    "email": "albin.groen@gmail.com",
+    "url": "https://albingroen.com",
+    "name": "Albin Groen"
+  },
   "module": "dist/react-cmdk.esm.js",
   "devDependencies": {
     "@babel/core": "^7.16.0",
