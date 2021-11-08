@@ -6,6 +6,7 @@ A fast, accessible, and pretty React.js command palette component
 - [Screenshots](#screenshots)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Types](#types)
 - [Maintainers](#maintainers)
 
 ## What is this?
@@ -70,6 +71,81 @@ const App = () => {
   );
 };
 ```
+
+## Types
+
+### Props
+
+| Name    | Type                        | Default   | Required | Description                                            |
+| ------- | --------------------------- | --------- | -------- | ------------------------------------------------------ |
+| options | [CMDKOption[]](#cmdkoption) | undefined | true     | List of options that'll show up in the command palette |
+
+### CMDKOption
+
+| Name     | Type                        | Default   | Required | Description                                                  |
+| -------- | --------------------------- | --------- | -------- | ------------------------------------------------------------ |
+| options  | [CMDKOption[]](#cmdkoption) | undefined | false    | A list of sub-options that'll show up in the command palette |
+| icon     | [CMDKIcon[]](#cmdkicon)     | undefined | false    | A [HeroIcon](https://heroicons.com) icon name                |
+| shortcut | string[]                    | undefined | false    | If available, enter the shortcut for this action here        |
+| label    | string                      | undefined | true     | The text that'll show up on the option                       |
+| key      | string                      | undefined | true     | A unique key for the option                                  |
+
+### CMDKIcon
+
+- X
+- Ban
+- Cog
+- CreditCard
+- Collection
+- Eye
+- Key
+- Map
+- Rss
+- Sun
+- Tag
+- Bell
+- Cake
+- Cash
+- Chat
+- Chip
+- Code
+- Cube
+- Film
+- Fire
+- Flag
+- Gift
+- Hand
+- Home
+- Link
+- Mail
+- Menu
+- Moon
+- Play
+- Plus
+- Search
+- Save
+- Star
+- Stop
+- User
+- Wifi
+- Check
+- Clock
+- Cloud
+- Globe
+- Heart
+- Inbox
+- Login
+- Logout
+- Minus
+- Pause
+- Phone
+- Reply
+- Scale
+- Share
+- Table
+- Trash
+- Truck
+- Users
 
 ## Maintainers
 
