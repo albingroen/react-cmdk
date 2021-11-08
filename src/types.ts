@@ -3,8 +3,9 @@ export type CMDKProps = {
 };
 
 export type CMDKOption = {
+  options?: CMDKOption[];
   shortcut?: string[];
-  icon: CMDKIcon;
+  icon?: CMDKIcon;
   label: string;
   key: string;
 };

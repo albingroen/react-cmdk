@@ -28,9 +28,9 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "cmdk",
+  "name": "react-cmdk",
   "author": "Albin Groen",
-  "module": "dist/cmdk.esm.js",
+  "module": "dist/react-cmdk.esm.js",
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@storybook/react": "^6.3.12",
