@@ -16,12 +16,12 @@
   }
 }
 
-.dialog-overlay[data-state='open'],
-.dialog-content[data-state='open'] {
+.dialog-overlay[data-state="open"],
+.dialog-content[data-state="open"] {
   animation: fadeIn 200ms ease-out;
 }
 
-.dialog-overlay[data-state='closed'],
-.dialog-content[data-state='closed'] {
+.dialog-overlay[data-state="closed"],
+.dialog-content[data-state="closed"] {
   animation: fadeOut 200ms ease-in;
 }

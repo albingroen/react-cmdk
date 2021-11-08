@@ -41,27 +41,27 @@ yarn add react-cmdk
 ## Usage
 
 ```javascript
-import CMDK from 'react-cmdk';
+import CMDK from "react-cmdk";
 
 const App = () => {
   const options = [
     {
-      key: 'general',
-      label: 'General',
+      key: "general",
+      label: "General",
       options: [
         {
-          key: 'create-project',
-          label: 'Create new project',
-          shortcut: ['⇧', '⌘', 'N'],
-          href: '/project/new',
-          icon: 'Plus',
+          key: "create-project",
+          label: "Create new project",
+          shortcut: ["⇧", "⌘", "N"],
+          href: "/project/new",
+          icon: "Plus",
         },
         {
-          key: 'account',
-          label: 'My account',
-          shortcut: ['⇧', '⌘', 'A'],
-          href: '/account',
-          icon: 'User',
+          key: "account",
+          label: "My account",
+          shortcut: ["⇧", "⌘", "A"],
+          href: "/account",
+          icon: "User",
         },
       ],
     },
