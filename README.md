@@ -20,7 +20,7 @@ pretty.
 
 ## Screenshots
 
-Light mode and dark mode is enabled through the machines theme settings.
+Light mode and dark mode is updated through the machines theme settings.
 
 |                                                                  Light mode                                                                   |                                                                   Dark mode                                                                   |
 | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
