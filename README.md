@@ -42,7 +42,7 @@ yarn add react-cmdk
 import CMDK from 'react-cmdk';
 
 const App = () => {
-  const options: CMDKOption[] = [
+  const options = [
     {
       key: 'general',
       label: 'General',
@@ -51,12 +51,14 @@ const App = () => {
           key: 'create-project',
           label: 'Create new project',
           shortcut: ['⇧', '⌘', 'N'],
+          href: '/project/new',
           icon: 'Plus',
         },
         {
           key: 'account',
           label: 'My account',
           shortcut: ['⇧', '⌘', 'A'],
+          href: '/account',
           icon: 'User',
         },
       ],
@@ -87,6 +89,7 @@ const App = () => {
 | options  | [CMDKOption[]](#cmdkoption) | undefined | false    | A list of sub-options that'll show up in the command palette |
 | icon     | [CMDKIcon[]](#cmdkicon)     | undefined | false    | A [HeroIcon](https://heroicons.com) icon name                |
 | shortcut | string[]                    | undefined | false    | If available, enter the shortcut for this action here        |
+| href     | string                      | undefined | false    | The link that the user will be sent to apon selection        |
 | label    | string                      | undefined | true     | The text that'll show up on the option                       |
 | key      | string                      | undefined | true     | A unique key for the option                                  |
 

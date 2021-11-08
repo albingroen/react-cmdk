@@ -6,6 +6,7 @@ export type CMDKOption = {
   options?: CMDKOption[];
   shortcut?: string[];
   icon?: CMDKIcon;
+  href?: string;
   label: string;
   key: string;
 };

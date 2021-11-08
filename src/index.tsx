@@ -59,7 +59,7 @@ const CMDK: FC<CMDKProps> = ({ options }) => {
             onMouseOver={(e) => {
               e.currentTarget.focus();
             }}
-            href="/"
+            href={option.href}
           >
             <div className={tw('space-x-3 flex items-center')}>
               {Icon && (
