@@ -11,7 +11,7 @@ setup({
 
 const CMDK: FC<CMDKProps> = ({ options }) => {
   const [search, onSearchChange] = useState<string>();
-  const [open, onOpenChange] = useState(true);
+  const [open, onOpenChange] = useState(false);
 
   const filteredOptions = options.filter((option) =>
     search
@@ -104,7 +104,7 @@ const CMDK: FC<CMDKProps> = ({ options }) => {
     >
       <Dialog.Overlay
         className={`dialog-overlay ${tw(
-          "h-screen w-screen bg-black bg-opacity-25 dark:bg-opacity-50"
+          "h-screen w-screen top-0 left-0 bg-black bg-opacity-25 dark:bg-opacity-50"
         )}`}
       />
       <Dialog.Content
