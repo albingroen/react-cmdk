@@ -1,7 +1,7 @@
 {
   "name": "react-cmdk",
   "description": "A fast, accessible, and pretty React.js command palette component",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "keywords": [
     "react",
