@@ -10,7 +10,7 @@ setup({
 });
 
 const CMDK: FC<CMDKProps> = ({ options }) => {
-  const [search, onSearchChange] = useState<string>();
+  const [search, onSearchChange] = useState<string>("");
   const [open, onOpenChange] = useState(false);
 
   const filteredOptions = options.filter((option) =>
