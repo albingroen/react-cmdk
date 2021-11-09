@@ -3,27 +3,6 @@
   "description": "A fast, accessible, and pretty React.js command palette component",
   "version": "0.1.0",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
-  },
-  "peerDependencies": {
-    "react": ">=16"
-  },
   "keywords": [
     "react",
     "tailwindcss",
@@ -39,22 +18,35 @@
     "url": "https://albingroen.com",
     "name": "Albin Groen"
   },
-  "module": "dist/react-cmdk.esm.js",
-  "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@storybook/react": "^6.3.12",
-    "@types/react": "^17.0.34",
-    "@types/react-dom": "^17.0.11",
-    "babel-loader": "^8.2.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.3.1",
-    "typescript": "^4.4.4"
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.tsx",
+  "engines": {
+    "node": ">=10"
   },
-  "dependencies": {
+  "scripts": {
+    "build": "microbundle-crl --compress --format modern,cjs",
+    "start": "microbundle-crl watch --no-compress --format modern,cjs"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
+  "devDependencies": {
     "@heroicons/react": "^1.0.5",
     "@radix-ui/react-dialog": "^0.1.1",
-    "twind": "^0.16.16"
+    "@types/node": "^12.12.38",
+    "@types/react": "^16.9.27",
+    "@types/react-dom": "^16.9.7",
+    "microbundle-crl": "^0.13.10",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^4.0.3",
+    "typescript": "^4.4.4"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "twind": "0.16.16"
   }
 }
