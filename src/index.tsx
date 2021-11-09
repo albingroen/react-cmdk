@@ -51,7 +51,7 @@ const CMDK: FC<CMDKProps> = ({ options }) => {
           {renderOptions(option.options)}
         </div>
       ) : (
-        <li>
+        <li key={option.key}>
           <a
             className={tw(
               "flex items-center space-x-4 justify-between px-2 rounded-md h-11 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800"
@@ -60,7 +60,6 @@ const CMDK: FC<CMDKProps> = ({ options }) => {
               e.currentTarget.focus();
             }}
             href={option.href}
-            key={option.key}
           >
             <div className={tw("space-x-3 flex items-center")}>
               {Icon && (
