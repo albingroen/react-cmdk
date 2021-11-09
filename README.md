@@ -42,6 +42,7 @@ yarn add react-cmdk
 
 ```javascript
 import CMDK from "react-cmdk";
+import "react-cmdk/dist/index.css"
 
 const App = () => {
   const options = [
