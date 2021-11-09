@@ -47,6 +47,6 @@
     "dist"
   ],
   "dependencies": {
-    "twind": "0.10.1"
+    "twind": "0.16.6"
   }
 }
