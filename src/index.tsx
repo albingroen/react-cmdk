@@ -39,7 +39,7 @@ const CMDK: FC<CMDKProps> = ({ options }) => {
       const Icon = option.icon && HeroIcons[`${option.icon}Icon`];
 
       return option.options ? (
-        <div className={tw("p-2 pt-0")}>
+        <div key={option.key} className={tw("p-2 pt-0")}>
           <li className={tw("px-2 rounded-md flex items-center h-10")}>
             <span
               className={tw("text-sm font-medium text-gray-500 leading-none")}
@@ -60,6 +60,7 @@ const CMDK: FC<CMDKProps> = ({ options }) => {
               e.currentTarget.focus();
             }}
             href={option.href}
+            key={option.key}
           >
             <div className={tw("space-x-3 flex items-center")}>
               {Icon && (
