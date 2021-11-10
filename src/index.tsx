@@ -13,11 +13,15 @@ const CMDK: FC<CMDKProps> = ({ options }) => {
   const [search, onSearchChange] = useState<string>("");
   const [open, onOpenChange] = useState(false);
 
-  const filteredOptions = options.filter((option) =>
-    search
-      ? JSON.stringify(option).toLowerCase().includes(search.toLowerCase())
-      : true
-  );
+  const filterOptions = (opts: CMDKOption[]) => {
+    return opts.filter((option) =>
+      option.options
+        ? true
+        : search
+        ? JSON.stringify(option).toLowerCase().includes(search.toLowerCase())
+        : true
+    );
+  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -34,8 +38,8 @@ const CMDK: FC<CMDKProps> = ({ options }) => {
     };
   }, []);
 
-  const renderOptions = (options: CMDKOption[]): ReactNode => {
-    return options.map((option) => {
+  const renderOptions = (opts: CMDKOption[]): ReactNode => {
+    return filterOptions(opts).map((option) => {
       const Icon = option.icon && HeroIcons[`${option.icon}Icon`];
 
       return option.options ? (
@@ -128,13 +132,13 @@ const CMDK: FC<CMDKProps> = ({ options }) => {
             autoFocus
           />
 
-          {filteredOptions?.length ? (
+          {options?.length ? (
             <ul
               className={tw(
                 "dark:border-gray-800 flex-1 overflow-y-auto divide-y dark:divide-gray-800"
               )}
             >
-              {renderOptions(filteredOptions)}
+              {renderOptions(options)}
             </ul>
           ) : (
             <div
