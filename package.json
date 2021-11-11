@@ -1,7 +1,7 @@
 {
   "name": "react-cmdk",
   "description": "A fast, accessible, and pretty React.js command palette component",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "keywords": [
     "react",
@@ -41,8 +41,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^4.0.3",
-    "typescript": "^4.4.4",
-    "twin.macro": "^2.8.1"
+    "twin.macro": "^2.8.1",
+    "typescript": "^4.4.4"
   },
   "files": [
     "dist"
