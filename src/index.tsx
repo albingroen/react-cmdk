@@ -108,7 +108,7 @@ const CMDK: FC<CMDKProps> = ({ options }) => {
     >
       <Dialog.Overlay
         className={`dialog-overlay ${tw(
-          "h-screen w-screen top-0 left-0 bg-black bg-opacity-25 dark:bg-opacity-50"
+          "h-screen w-screen top-0 left-0 bg-black fixed bg-opacity-25 dark:bg-opacity-50"
         )}`}
       />
       <Dialog.Content
