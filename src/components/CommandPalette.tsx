@@ -89,6 +89,7 @@ function CommandPalette({
 
     if (item) {
       item.click();
+      onChangeOpen(false);
     }
   }
 
@@ -130,8 +131,6 @@ function CommandPalette({
                 className="command-palette"
                 onClose={() => {
                   onChangeOpen(false);
-                  onChangeSearch("");
-                  setSelected(0);
                 }}
               >
                 <div className="command-palette-content antialiased">
