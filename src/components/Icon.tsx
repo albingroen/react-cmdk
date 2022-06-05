@@ -3,8 +3,10 @@ import * as HeroIconsSolid from "@heroicons/react/solid";
 import React, { SVGProps } from "react";
 import { IconName } from "../types";
 
+export type IconType = "outline" | "solid";
+
 export interface IconProps extends SVGProps<SVGSVGElement> {
-  type?: "outline" | "solid";
+  type?: IconType;
   name: IconName;
 }
 

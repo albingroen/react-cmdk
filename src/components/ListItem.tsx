@@ -1,4 +1,4 @@
-import Icon, { IconProps } from "./Icon";
+import Icon, { IconType } from "./Icon";
 import React, {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
@@ -26,6 +26,7 @@ function getListItemWrapperStyles(selected: boolean, disabled?: boolean) {
 
 interface ListItemBaseProps {
   icon?: FC | IconName;
+  iconType?: IconType;
   showType?: boolean;
   disabled?: boolean;
   index: number;
@@ -46,6 +47,7 @@ export function Link({
   disabled = false,
   showType = true,
   className,
+  iconType,
   children,
   index,
   icon,
@@ -58,7 +60,11 @@ export function Link({
 
   function renderLinkContent() {
     return (
-      <ListItemContent type={showType ? "Link" : undefined} icon={icon}>
+      <ListItemContent
+        type={showType ? "Link" : undefined}
+        iconType={iconType}
+        icon={icon}
+      >
         {children}
       </ListItemContent>
     );
@@ -98,6 +104,7 @@ export function Button({
   showType = true,
   className,
   children,
+  iconType,
   index,
   icon,
   ...rest
@@ -113,7 +120,11 @@ export function Button({
         className
       )}
     >
-      <ListItemContent type={showType ? "Action" : undefined} icon={icon}>
+      <ListItemContent
+        type={showType ? "Action" : undefined}
+        iconType={iconType}
+        icon={icon}
+      >
         {children}
       </ListItemContent>
     </button>
@@ -122,12 +133,14 @@ export function Button({
 
 interface ListItemContentProps {
   icon?: FC<any> | IconName;
+  iconType?: IconType;
   children: ReactNode;
   type?: ListItemType;
 }
 
 function ListItemContent({
   icon: ListItemIcon,
+  iconType,
   children,
   type,
 }: ListItemContentProps) {
@@ -136,7 +149,7 @@ function ListItemContent({
       <div className="flex w-full items-center space-x-2.5">
         {ListItemIcon &&
           (typeof ListItemIcon === "string" ? (
-            <Icon name={ListItemIcon as IconName} />
+            <Icon name={ListItemIcon as IconName} type={iconType} />
           ) : (
             <ListItemIcon className="w-5 h-5 text-gray-500" />
           ))}
