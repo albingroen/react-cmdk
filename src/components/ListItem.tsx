@@ -9,7 +9,7 @@ import React, {
   useContext,
 } from "react";
 import { IconName, RenderLink } from "../types";
-import { RenderLinkContext, SelectContext } from "../lib/context";
+import { OpenContext, RenderLinkContext, SelectContext } from "../lib/context";
 import { classNames } from "../lib/utils";
 
 export type ListItemType = "Link" | "Action";
@@ -25,6 +25,7 @@ function getListItemWrapperStyles(selected: boolean, disabled?: boolean) {
 }
 
 interface ListItemBaseProps {
+  closeOnSelect?: boolean;
   icon?: FC | IconName;
   iconType?: IconType;
   showType?: boolean;
@@ -44,17 +45,20 @@ export interface LinkProps
 
 export function Link({
   renderLink: localRenderLink,
+  closeOnSelect = true,
   disabled = false,
   showType = true,
   className,
   iconType,
   children,
+  onClick,
   index,
   icon,
   ...rest
 }: LinkProps) {
-  const { selected } = useContext(SelectContext);
   const { renderLink: globalRenderLink } = useContext(RenderLinkContext);
+  const { onChangeOpen } = useContext(OpenContext);
+  const { selected } = useContext(SelectContext);
 
   const renderLink = localRenderLink || globalRenderLink;
 
@@ -75,17 +79,37 @@ export function Link({
     className
   );
 
+  function clickAndClose(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+    if (rest.href && !disabled) {
+      if (onClick) {
+        onClick(e);
+      }
+
+      if (closeOnSelect) {
+        onChangeOpen(false);
+      }
+    }
+  }
+
   return renderLink ? (
     <Fragment>
       {renderLink({
         ...rest,
+        "data-close-on-select": closeOnSelect,
         children: renderLinkContent(),
         "aria-disabled": disabled,
+        onClick: clickAndClose,
         className: styles,
       })}
     </Fragment>
   ) : (
-    <a {...rest} aria-disabled={disabled} className={styles}>
+    <a
+      {...rest}
+      data-close-on-select={closeOnSelect}
+      aria-disabled={disabled}
+      onClick={clickAndClose}
+      className={styles}
+    >
       {renderLinkContent()}
     </a>
   );
@@ -101,20 +125,35 @@ export interface ButtonProps
 }
 
 export function Button({
+  closeOnSelect = true,
   showType = true,
   className,
   children,
   iconType,
+  onClick,
   index,
   icon,
   ...rest
 }: ButtonProps) {
   const { selected } = useContext(SelectContext);
+  const { onChangeOpen } = useContext(OpenContext);
+
+  function clickAndClose(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    if (onClick) {
+      onClick(e);
+
+      if (closeOnSelect) {
+        onChangeOpen(false);
+      }
+    }
+  }
 
   return (
     <button
       {...rest}
       aria-disabled={rest.disabled ?? false}
+      data-close-on-select={closeOnSelect}
+      onClick={clickAndClose}
       className={classNames(
         getListItemWrapperStyles(selected === index, rest.disabled),
         className

@@ -14,3 +14,11 @@ export const RenderLinkContext = createContext<{
 }>({
   renderLink: undefined,
 });
+
+export const OpenContext = createContext<{
+  onChangeOpen: (value: boolean) => void;
+  isOpen: boolean;
+}>({
+  onChangeOpen: () => undefined,
+  isOpen: false,
+});

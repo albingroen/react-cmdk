@@ -75,7 +75,9 @@ const Template: Story<any> = () => {
           children: "Candidates",
           icon: "UsersIcon",
           id: "users",
-          href: "#",
+          onClick: () => {
+            alert("hj");
+          },
         },
       ],
     },
@@ -127,6 +129,7 @@ const Template: Story<any> = () => {
           })
         ) : (
           <CommandPalette.FreeSearchAction
+            closeOnSelect={false}
             onClick={() => {
               alert(`Searching for ${search}...`);
             }}

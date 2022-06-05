@@ -75,5 +75,5 @@ export type RenderLink = (
   props: DetailedHTMLProps<
     AnchorHTMLAttributes<HTMLAnchorElement>,
     HTMLAnchorElement
-  >
+  > & { "data-close-on-select"?: boolean }
 ) => ReactNode;
