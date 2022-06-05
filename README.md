@@ -1,30 +1,10 @@
 # react-cmdk
 
-A fast, accessible, and pretty React.js command palette component
+A fast, accessible, and pretty React.js command palette
 
-- [What is this?](#what-is-this)
-- [Screenshots](#screenshots)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Types](#types)
+- [Usage](#example-usage)
 - [Maintainers](#maintainers)
-
-## What is this?
-
-This is a installable component for the web development framework React.js. The
-package includes 1 component, and its TypeScript types. The goal of the
-component is to save web developers their time, and not make them have to build
-their own command palette component. Instead, they can just install this
-component, and get a out-of-the-box command palette that's fast accessible, and
-pretty.
-
-## Screenshots
-
-Light mode and dark mode is updated through the machines theme settings.
-
-|                                                                  Light mode                                                                   |                                                                   Dark mode                                                                   |
-| :-------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
-| ![CleanShot 2021-11-08 at 20 54 04@2x](https://user-images.githubusercontent.com/19674362/140808835-be7e491e-7af0-4fcc-b2ef-22404d783c04.png) | ![CleanShot 2021-11-08 at 20 54 13@2x](https://user-images.githubusercontent.com/19674362/140808862-07afa4e8-9629-42ba-9d63-5ed3a3914a96.png) |
 
 ## Installation
 
@@ -38,120 +18,131 @@ Or if you'd rather use Yarn
 yarn add react-cmdk
 ```
 
-## Usage
+## Example usage
 
-```javascript
-import CMDK from "react-cmdk";
-import "react-cmdk/dist/index.css"
+You can compose your command palette pretty much however you like with the
+included components. But here is a example of command palette that uses some
+of the included helpers to get a very neat comand palette.
 
-const App = () => {
-  const options = [
-    {
-      key: "general",
-      label: "General",
-      options: [
-        {
-          key: "create-project",
-          label: "Create new project",
-          shortcut: ["⇧", "⌘", "N"],
-          href: "/project/new",
-          icon: "Plus",
-        },
-        {
-          key: "account",
-          label: "My account",
-          shortcut: ["⇧", "⌘", "A"],
-          href: "/account",
-          icon: "User",
-        },
-      ],
-    },
-  ];
+```typescript
+import "react-cmdk-2/dist/cmdk.css";
+import CommandPalette, { filterItems, getItemIndex } from "react-cmdk-2";
+import { useState } from "react";
+
+const Example = () => {
+  const [open, setOpen] = useState<boolean>(true);
+  const [search, setSearch] = useState("");
+
+  const filteredItems = filterItems(
+    [
+      {
+        heading: "Home",
+        id: "home",
+        items: [
+          {
+            id: "home",
+            children: "Home",
+            icon: "HomeIcon",
+            href: "#",
+          },
+          {
+            id: "settings",
+            children: "Settings",
+            icon: "CogIcon",
+            href: "#",
+          },
+          {
+            id: "projects",
+            children: "Projects",
+            icon: "CollectionIcon",
+            href: "#",
+          },
+        ],
+      },
+      {
+        heading: "Other",
+        id: "advanced",
+        items: [
+          {
+            id: "developer-settings",
+            children: "Developer settings",
+            icon: "CodeIcon",
+            href: "#",
+          },
+          {
+            id: "privacy-policy",
+            children: "Privacy policy",
+            icon: "SupportIcon",
+            href: "#",
+          },
+          {
+            id: "log-out",
+            children: "Log out",
+            icon: "LogoutIcon",
+            onClick: () => {
+              alert("Logging out...");
+            },
+          },
+        ],
+      },
+    ],
+    search
+  );
 
   return (
-    <>
-      <CMDK options={options} />
-      ...
-    </>
+    <CommandPalette
+      onChangeSearch={setSearch}
+      onChangeOpen={setOpen}
+      search={search}
+      isOpen={open}
+    >
+      {filteredItems.length ? (
+        filteredItems.map((list) => (
+          <CommandPalette.List key={list.id} heading={list.heading}>
+            {list.items.map(({ id, ...rest }, i) => (
+              <CommandPalette.ListItem
+                key={id}
+                index={getItemIndex(filteredItems, id)}
+                {...rest}
+              />
+            ))}
+          </CommandPalette.List>
+        ))
+      ) : (
+        <CommandPalette.FreeSearchAction index={0} />
+      )}
+    </CommandPalette>
   );
 };
+
+export default Example;
 ```
 
-## Types
+### Opening the commane palelette
 
-### Props
+The package doesn't include built-in support for opening the comamnd palette,
+so you can open it however you want. Here is and example though.
 
-| Name    | Type                        | Default   | Required | Description                                            |
-| ------- | --------------------------- | --------- | -------- | ------------------------------------------------------ |
-| options | [CMDKOption[]](#cmdkoption) | undefined | true     | List of options that'll show up in the command palette |
+```typescript
+useEffect(() => {
+  function handleKeyDown(e: KeyboardEvent) {
+    if (e.metaKey && e.key === "k") {
+      e.preventDefault();
+      e.stopPropagation();
 
-### CMDKOption
+      setIsOpen((currentValue) => {
+        return !currentValue;
+      });
+    }
+  }
 
-| Name     | Type                        | Default   | Required | Description                                                  |
-| -------- | --------------------------- | --------- | -------- | ------------------------------------------------------------ |
-| options  | [CMDKOption[]](#cmdkoption) | undefined | false    | A list of sub-options that'll show up in the command palette |
-| icon     | [CMDKIcon[]](#cmdkicon)     | undefined | false    | A [HeroIcon](https://heroicons.com) icon name                |
-| shortcut | string[]                    | undefined | false    | If available, enter the shortcut for this action here        |
-| href     | string                      | undefined | false    | The link that the user will be sent to apon selection        |
-| label    | string                      | undefined | true     | The text that'll show up on the option                       |
-| key      | string                      | undefined | true     | A unique key for the option                                  |
+  document.addEventListener("keydown", handleKeyDown);
 
-### CMDKIcon
-
-- X
-- Ban
-- Cog
-- CreditCard
-- Collection
-- Eye
-- Key
-- Map
-- Rss
-- Sun
-- Tag
-- Bell
-- Cake
-- Cash
-- Chat
-- Chip
-- Code
-- Cube
-- Film
-- Fire
-- Flag
-- Gift
-- Hand
-- Home
-- Link
-- Mail
-- Menu
-- Moon
-- Play
-- Plus
-- Search
-- Save
-- Star
-- Stop
-- User
-- Wifi
-- Check
-- Clock
-- Cloud
-- Globe
-- Heart
-- Inbox
-- Login
-- Logout
-- Minus
-- Pause
-- Phone
-- Reply
-- Scale
-- Share
-- Table
-- Trash
-- Truck
-- Users
+  return () => {
+    document.removeEventListener("keydown", handleKeyDown);
+  };
+}, []);
+```
 
 ## Maintainers
 

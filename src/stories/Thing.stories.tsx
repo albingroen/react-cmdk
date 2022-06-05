@@ -1,0 +1,154 @@
+import CommandPalette, { JsonStructure, getItemIndex, filterItems } from "../";
+import { Meta, Story } from "@storybook/react";
+import { useEffect, useState } from "react";
+
+const meta: Meta = {
+  title: "CommandPalette",
+  component: CommandPalette,
+  parameters: { controls: { expanded: false } },
+};
+
+export default meta;
+
+const Template: Story<any> = () => {
+  const [search, setSearch] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(true);
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.metaKey && e.key === "k") {
+        e.preventDefault();
+        e.stopPropagation();
+
+        setIsOpen((currentValue) => {
+          return !currentValue;
+        });
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  const items: JsonStructure = [
+    {
+      id: "welcome",
+      items: [
+        {
+          id: "welcome",
+          children: <Welcome />,
+          showType: false,
+          onClick: () => {
+            alert("welcome!");
+          },
+        },
+      ],
+    },
+    {
+      heading: "Home",
+      id: "home",
+      items: [
+        {
+          children: "Home",
+          icon: "HomeIcon",
+          id: "home",
+          disabled: true,
+          href: "#",
+          renderLink: (props) => <a {...props} />,
+        },
+        {
+          children: "Settings",
+          icon: "CogIcon",
+          id: "settings",
+          disabled: true,
+        },
+        {
+          children: "Positions",
+          icon: "BriefcaseIcon",
+          id: "positions",
+          href: "#",
+        },
+        {
+          children: "Candidates",
+          icon: "UsersIcon",
+          id: "users",
+          href: "#",
+        },
+      ],
+    },
+    {
+      heading: "External",
+      id: "external",
+      items: [
+        {
+          href: "https://google.com",
+          children: "Help",
+          icon: "SupportIcon",
+          id: "support",
+          target: "_blank",
+          rel: "noopener noreferrer",
+        },
+      ],
+    },
+  ];
+
+  const filteredItems = filterItems(items, search);
+
+  return (
+    <div>
+      <img
+        src="https://res.cloudinary.com/albin-groen/image/upload/v1654031287/CleanShot_2022-05-31_at_23.07.58_2x_ujymun.png"
+        alt=""
+        className="h-screen w-screen object-cover object-center"
+      />
+
+      <CommandPalette
+        onChangeSearch={setSearch}
+        onChangeOpen={setIsOpen}
+        search={search}
+        isOpen={isOpen}
+      >
+        {filteredItems.length ? (
+          filteredItems.map((list) => {
+            return (
+              <CommandPalette.List heading={list.heading} key={list.id}>
+                {list.items.map(({ id, ...rest }) => (
+                  <CommandPalette.ListItem
+                    index={getItemIndex(filteredItems, id)}
+                    key={id}
+                    {...rest}
+                  />
+                ))}
+              </CommandPalette.List>
+            );
+          })
+        ) : (
+          <CommandPalette.FreeSearchAction
+            onClick={() => {
+              alert(`Searching for ${search}...`);
+            }}
+          />
+        )}
+      </CommandPalette>
+    </div>
+  );
+};
+
+export const Default = Template.bind({});
+
+Default.args = {};
+
+function Welcome() {
+  return (
+    <div className="w-full rounded-lg text-white bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-400 p-4 border-t border-indigo-500 border-b border-indigo-500">
+      <h2 className="text-lg font-semibold leading-tight">Welcome 👋</h2>
+      <p className="text-sm text-white/80 font-medium max-w-xs mt-1">
+        We're really glad you found this! Here you can quickly get to what you
+        want to do
+      </p>
+    </div>
+  );
+}
