@@ -166,7 +166,7 @@ function CommandPalette({
                       <input
                         ref={inputRef}
                         spellCheck={false}
-                        className="p-3.5 pl-9 border-none w-full focus:outline-none focus:border-none focus:ring-0 bg-transparent placeholder-gray-500"
+                        className="p-3.5 pl-9 border-none w-full focus:outline-none focus:border-none focus:ring-0 bg-transparent placeholder-gray-500 dark:text-white"
                         onChange={(e) => {
                           onChangeSearch(e.currentTarget.value);
                         }}
