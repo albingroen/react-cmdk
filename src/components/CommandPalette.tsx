@@ -178,7 +178,7 @@ function CommandPalette({
                         }}
                         placeholder="Search"
                         value={search}
-                        type="search"
+                        type="text"
                         autoFocus
                       />
 
