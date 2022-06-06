@@ -146,8 +146,10 @@ Default.args = {};
 
 function Welcome() {
   return (
-    <div className="w-full rounded-lg text-white bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-400 p-4 border-t border-indigo-500 border-b border-indigo-500">
-      <h2 className="text-lg font-semibold leading-tight">Welcome 👋</h2>
+    <div className="w-full rounded-lg bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-400 p-4 border-t border-indigo-500 border-b border-indigo-500">
+      <h2 className="text-lg font-semibold leading-tight text-white">
+        Welcome 👋
+      </h2>
       <p className="text-sm text-white/80 font-medium max-w-xs mt-1">
         We're really glad you found this! Here you can quickly get to what you
         want to do

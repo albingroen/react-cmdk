@@ -16,7 +16,7 @@ export type ListItemType = "Link" | "Action";
 
 function getListItemWrapperStyles(selected: boolean, disabled?: boolean) {
   return classNames(
-    "command-palette-list-item block w-full text-left px-3.5 py-2.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 focus:ring-1 focus:ring-gray-300 focus:outline-none flex items-center space-x-2.5 justify-between dark:text-white",
+    "command-palette-list-item block w-full text-left px-3.5 py-2.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 focus:ring-1 focus:ring-gray-300 focus:outline-none flex items-center space-x-2.5 justify-between",
     selected && !disabled
       ? "bg-gray-200/50 dark:bg-gray-800"
       : "bg-transparent",
@@ -196,7 +196,7 @@ function ListItemContent({
           ))}
 
         {typeof children === "string" ? (
-          <span className="truncate max-w-md">{children}</span>
+          <span className="truncate max-w-md dark:text-white">{children}</span>
         ) : (
           children
         )}
