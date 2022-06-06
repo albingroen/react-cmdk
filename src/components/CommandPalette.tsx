@@ -165,6 +165,7 @@ function CommandPalette({
                       <SearchIcon className="w-4 pointer-events-none text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
                       <input
                         ref={inputRef}
+                        spellCheck={false}
                         className="p-3.5 pl-9 border-none w-full focus:outline-none focus:border-none focus:ring-0 bg-transparent placeholder-gray-500"
                         onChange={(e) => {
                           onChangeSearch(e.currentTarget.value);
