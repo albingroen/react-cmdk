@@ -129,10 +129,10 @@ const Template: Story<any> = () => {
           })
         ) : (
           <CommandPalette.FreeSearchAction
+            href={`https://google.com/?q=${search}`}
+            rel="noopener noreferrer"
             closeOnSelect={false}
-            onClick={() => {
-              alert(`Searching for ${search}...`);
-            }}
+            target="_blank"
           />
         )}
       </CommandPalette>
