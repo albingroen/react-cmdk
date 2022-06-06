@@ -11,7 +11,7 @@ export default function FreeSearchAction(props: FreeSearchActionProps) {
 
   return (
     <ListItem index={0} icon="SearchIcon" showType={false} {...props}>
-      <span className="max-w-md truncate">
+      <span className="max-w-md truncate dark:text-white">
         Search for <span className="font-semibold">"{search}"</span>
       </span>
     </ListItem>
