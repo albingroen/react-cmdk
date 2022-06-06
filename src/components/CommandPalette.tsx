@@ -160,9 +160,9 @@ function CommandPalette({
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className="w-full max-h-full bg-white shadow-lg rounded-lg max-w-xl flex flex-col overflow-hidden divide-y">
+                  <Dialog.Panel className="w-full max-h-full bg-white dark:bg-gray-900 shadow-lg rounded-lg max-w-xl flex flex-col overflow-hidden divide-y dark:divide-gray-800">
                     <div className="relative">
-                      <SearchIcon className="w-4 pointer-events-none text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
+                      <SearchIcon className="w-4 pointer-events-none text-gray-400 dark:text-gray-600 absolute left-3 top-1/2 transform -translate-y-1/2" />
                       <input
                         ref={inputRef}
                         spellCheck={false}
@@ -192,7 +192,7 @@ function CommandPalette({
                             inputRef.current?.focus();
                           }}
                         >
-                          <XCircleIcon className="w-5 text-gray-300 hover:text-gray-500 transition absolute right-3 top-1/2 transform -translate-y-1/2" />
+                          <XCircleIcon className="w-5 text-gray-300 dark:text-gray-600 hover:text-gray-500 dark:hover:text-gray-300 transition absolute right-3 top-1/2 transform -translate-y-1/2" />
                         </button>
                       )}
                     </div>
