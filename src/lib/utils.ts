@@ -14,17 +14,42 @@ export function getItemIndex(
   );
 }
 
-export function filterItems(items: JsonStructure, search: string) {
+export function filterItems(
+  items: JsonStructure,
+  search: string,
+  {
+    filterOnListHeading,
+  }: {
+    filterOnListHeading: boolean;
+  } = {
+    filterOnListHeading: true,
+  }
+) {
   return items
-    .filter((list) =>
-      list.items.some((item) => doesChildMatchSearch(search, item.children))
-    )
-    .map((list) => ({
-      ...list,
-      items: list.items.filter((item) =>
+    .filter((list) => {
+      const listHasMatchingItem = list.items.some((item) =>
         doesChildMatchSearch(search, item.children)
-      ),
-    }));
+      );
+
+      return filterOnListHeading
+        ? list.heading?.toLowerCase().includes(search.toLowerCase()) ||
+            listHasMatchingItem
+        : listHasMatchingItem;
+    })
+    .map((list) => {
+      const matchingItems = list.items.filter((item) =>
+        doesChildMatchSearch(search, item.children)
+      );
+
+      return {
+        ...list,
+        items: filterOnListHeading
+          ? matchingItems.length
+            ? matchingItems
+            : list.items
+          : matchingItems,
+      };
+    });
 }
 
 function doesChildMatchSearch(search: string, children?: ReactNode) {

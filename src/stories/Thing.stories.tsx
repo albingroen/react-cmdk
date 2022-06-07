@@ -95,18 +95,47 @@ const Template: Story<any> = () => {
         },
       ],
     },
+    {
+      heading: "Extra",
+      id: "extra",
+      items: [
+        {
+          children: "Privacy policy",
+          icon: "FlagIcon",
+          id: "privacy",
+        },
+        {
+          children: "User agreement",
+          icon: "UserIcon",
+          id: "user-agreement",
+        },
+        {
+          children: "About",
+          icon: "EyeIcon",
+          id: "about",
+        },
+        {
+          children: "Career",
+          icon: "UsersIcon",
+          id: "career",
+        },
+      ],
+    },
   ];
 
   const filteredItems = filterItems(items, search);
 
   return (
-    <div>
-      <img
-        src="https://res.cloudinary.com/albin-groen/image/upload/v1654031287/CleanShot_2022-05-31_at_23.07.58_2x_ujymun.png"
-        alt=""
-        className="h-screen w-screen object-cover object-center"
-      />
-
+    <div
+      style={{
+        height: "100vh",
+        width: "100vw",
+        background: "#E5E7EB",
+        boxSizing: "border-box",
+        margin: 0,
+        padding: 0,
+      }}
+    >
       <CommandPalette
         onChangeSearch={setSearch}
         onChangeOpen={setIsOpen}
