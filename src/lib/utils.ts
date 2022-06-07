@@ -65,8 +65,11 @@ function doesChildMatchSearch(search: string, children?: ReactNode) {
 }
 
 function doesKeywordsMatchSearch(search: string, keywords: string[]) {
-  return keywords.some((keyword) =>
-    keyword.toLowerCase().includes(search.toLowerCase())
+  return (
+    keywords.includes("*") ||
+    keywords.some((keyword) =>
+      keyword.toLowerCase().includes(search.toLowerCase())
+    )
   );
 }
 
