@@ -41,7 +41,7 @@ const Template: Story<any> = () => {
           id: "welcome",
           children: <Welcome />,
           showType: false,
-          keywords: ["welcome"],
+          keywords: ["*"],
           onClick: () => {
             alert("welcome!");
           },
@@ -69,6 +69,7 @@ const Template: Story<any> = () => {
         {
           children: "Positions",
           icon: "BriefcaseIcon",
+          keywords: ["jobs"],
           id: "positions",
           href: "#",
         },
