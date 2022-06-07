@@ -103,6 +103,19 @@ function CommandPalette({
     handleChangeSelected();
   }, [search]);
 
+  // Select everything in search input upon open
+  useEffect(() => {
+    if (isOpen) {
+      const searchInputElement = document.querySelector<HTMLInputElement>(
+        "#command-palette-search-input"
+      );
+
+      if (searchInputElement) {
+        searchInputElement.select();
+      }
+    }
+  }, [isOpen]);
+
   return (
     <div
       onKeyDown={(e) => {
@@ -177,6 +190,7 @@ function CommandPalette({
                             onChangeSearch("");
                           }
                         }}
+                        id="command-palette-search-input"
                         placeholder="Search"
                         value={search}
                         type="text"
