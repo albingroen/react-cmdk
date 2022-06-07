@@ -1,6 +1,6 @@
 {
   "name": "react-cmdk",
-  "version": "1.1.9",
+  "version": "1.2.0",
   "description": "A fast, accessible, and pretty React.js command palette",
   "main": "dist/index.js",
   "repository": "https://github.com/albingroen/react-cmdk",
