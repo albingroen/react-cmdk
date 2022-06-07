@@ -103,19 +103,6 @@ function CommandPalette({
     handleChangeSelected();
   }, [search]);
 
-  // Select everything in search input upon open
-  useEffect(() => {
-    if (isOpen) {
-      const searchInputElement = document.querySelector<HTMLInputElement>(
-        "#command-palette-search-input"
-      );
-
-      if (searchInputElement) {
-        searchInputElement.select();
-      }
-    }
-  }, [isOpen]);
-
   return (
     <div
       onKeyDown={(e) => {
@@ -182,6 +169,9 @@ function CommandPalette({
                         className="p-3.5 pl-9 border-none w-full focus:outline-none focus:border-none focus:ring-0 bg-transparent placeholder-gray-500 dark:text-white"
                         onChange={(e) => {
                           onChangeSearch(e.currentTarget.value);
+                        }}
+                        onFocus={(e) => {
+                          e.currentTarget.select();
                         }}
                         onKeyDown={(e) => {
                           if (e.key === "Escape" && search) {
