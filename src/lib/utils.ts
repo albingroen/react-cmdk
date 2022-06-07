@@ -27,8 +27,10 @@ export function filterItems(
 ) {
   return items
     .filter((list) => {
-      const listHasMatchingItem = list.items.some((item) =>
-        doesChildMatchSearch(search, item.children)
+      const listHasMatchingItem = list.items.some(
+        (item) =>
+          doesChildMatchSearch(search, item.children) ||
+          doesKeywordsMatchSearch(search, item.keywords ?? [])
       );
 
       return filterOnListHeading
@@ -37,8 +39,10 @@ export function filterItems(
         : listHasMatchingItem;
     })
     .map((list) => {
-      const matchingItems = list.items.filter((item) =>
-        doesChildMatchSearch(search, item.children)
+      const matchingItems = list.items.filter(
+        (item) =>
+          doesChildMatchSearch(search, item.children) ||
+          doesKeywordsMatchSearch(search, item.keywords ?? [])
       );
 
       return {
@@ -58,6 +62,12 @@ function doesChildMatchSearch(search: string, children?: ReactNode) {
         .toLowerCase()
         .includes(search.toLowerCase())
     : false;
+}
+
+function doesKeywordsMatchSearch(search: string, keywords: string[]) {
+  return keywords.some((keyword) =>
+    keyword.toLowerCase().includes(search.toLowerCase())
+  );
 }
 
 function getLabelFromChildren(children: ReactNode) {

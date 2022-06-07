@@ -32,6 +32,7 @@ interface ListItemBaseProps {
   iconType?: IconType;
   showType?: boolean;
   disabled?: boolean;
+  keywords?: string[];
   index: number;
 }
 

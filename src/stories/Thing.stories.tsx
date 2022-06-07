@@ -41,6 +41,7 @@ const Template: Story<any> = () => {
           id: "welcome",
           children: <Welcome />,
           showType: false,
+          keywords: ["welcome"],
           onClick: () => {
             alert("welcome!");
           },
