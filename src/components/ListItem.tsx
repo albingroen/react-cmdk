@@ -43,7 +43,6 @@ export interface LinkProps
       HTMLAnchorElement
     > {
   renderLink?: RenderLink;
-  index: number;
 }
 
 export function Link({
@@ -123,9 +122,7 @@ export interface ButtonProps
     DetailedHTMLProps<
       ButtonHTMLAttributes<HTMLButtonElement>,
       HTMLButtonElement
-    > {
-  index: number;
-}
+    > {}
 
 export function Button({
   closeOnSelect = true,

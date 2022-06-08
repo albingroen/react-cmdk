@@ -1,10 +1,25 @@
-# react-cmdk
+# A command palette for React
 
-A fast, accessible, and pretty React.js command palette
+A package with components for building your dream command palette for your web application.
 
+- [Features](#features)
 - [Installation](#installation)
-- [Usage](#example-usage)
+- [Example usage](#example-usage)
+  - [Opening the commane palelette](#opening-the-command-palelette)
+- [API](#api)
 - [Maintainers](#maintainers)
+
+## Features
+
+✓ Accessible
+<br />
+✓ Flexible
+<br />
+✓ Good looking
+<br />
+✓ Very fast
+<br />
+✓ Dark & light mode
 
 ## Installation
 
@@ -21,12 +36,12 @@ yarn add react-cmdk
 ## Example usage
 
 You can compose your command palette pretty much however you like with the
-included components. But here is a example of command palette that uses some
-of the included helpers to get a very neat comand palette.
+included components. But here is an example of a command palette that uses some
+of the included helpers for a very neat solution.
 
 ```typescript
-import "react-cmdk-2/dist/cmdk.css";
-import CommandPalette, { filterItems, getItemIndex } from "react-cmdk-2";
+import "react-cmdk/dist/cmdk.css";
+import CommandPalette, { filterItems, getItemIndex } from "react-cmdk";
 import { useState } from "react";
 
 const Example = () => {
@@ -118,7 +133,7 @@ const Example = () => {
 export default Example;
 ```
 
-### Opening the commane palelette
+### Opening the command palelette
 
 The package doesn't include built-in support for opening the comamnd palette,
 so you can open it however you want. Here is and example though.
@@ -143,6 +158,71 @@ useEffect(() => {
   };
 }, []);
 ```
+
+## API
+
+### `CommandPalette`
+
+| name           | type                     | required | default | description                                 |
+| -------------- | ------------------------ | -------- | ------- | ------------------------------------------- |
+| onChangeSearch | (value: string) => void  | true     |         | Function for setting search value           |
+| onChangeOpen   | (value: boolean) => void | true     |         | Function for setting open state             |
+| children       | React.ReactNode          | true     |         | Children of command palette                 |
+| isOpen         | boolean                  | true     |         | Open state                                  |
+| search         | string                   | true     |         | Search state                                |
+| renderLink     | RenderLink               | false    |         | Function for customizing rendering of links |
+
+### `CommandPalette.List`
+
+| name     | type            | required | default | description          |
+| -------- | --------------- | -------- | ------- | -------------------- |
+| children | React.ReactNode | true     |         | Children of the list |
+| heading  | string          | false    |         | Heading of the list  |
+
+### `CommandPalette.ListItem`
+
+| name          | type                 | required | default    | description                                     |
+| ------------- | -------------------- | -------- | ---------- | ----------------------------------------------- |
+| index         | number               | true     |            | Index for list item                             |
+| closeOnSelect | boolean              | false    |            | Whether to close the command palette upon click |
+| icon          | (IconName, React.FC) | false    | `false`    | Icon for list item                              |
+| iconType      | IconType             | false    | `"solid" ` | Icon for list item                              |
+| showType      | boolean              | false    | true       | Whether to show the item type                   |
+| disabled      | boolean              | false    |            | Whether the item is disabled                    |
+| keywords      | Array<string>        | false    |            | Underlying search keywords for the list item    |
+
+The list item also extends the `HTMLAnchorElement & HTMLButtonElement` types
+
+### `RenderLink`
+
+```typescript
+(
+  props: DetailedHTMLProps<
+    AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  >
+) => ReactNode;
+```
+
+### `JsonStructure`
+
+Array of
+
+| name    | type                       | required | default | description      |
+| ------- | -------------------------- | -------- | ------- | ---------------- |
+| id      | string                     | true     |         | Id for list      |
+| items   | Array<`JsonStructureItem`> | true     |         | Items for list   |
+| heading | string                     | false    |         | Heading for list |
+
+### `JsonStructureItem`
+
+`CommandPalette.ListItem`
+
+Omits `index` & extends
+
+| name | type   | required | default | description      |
+| ---- | ------ | -------- | ------- | ---------------- |
+| id   | string | true     |         | Id for list item |
 
 ## Maintainers
 
