@@ -171,6 +171,7 @@ useEffect(() => {
 | isOpen         | boolean                  | true     |         | Open state                                  |
 | search         | string                   | true     |         | Search state                                |
 | renderLink     | RenderLink               | false    |         | Function for customizing rendering of links |
+| footer         | React.ReactNode          | false    |         | Footer component                            |
 
 ### `CommandPalette.List`
 
