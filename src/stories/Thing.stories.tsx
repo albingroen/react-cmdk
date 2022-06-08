@@ -143,6 +143,11 @@ const Template: Story<any> = () => {
         onChangeOpen={setIsOpen}
         search={search}
         isOpen={isOpen}
+        footer={
+          <div style={{ paddingInline: "1rem", paddingBlock: "0.75rem" }}>
+            <p>hej</p>
+          </div>
+        }
       >
         {filteredItems.length ? (
           filteredItems.map((list) => {

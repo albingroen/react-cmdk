@@ -19,6 +19,7 @@ interface CommandPaletteProps {
   onChangeOpen: (isOpen: boolean) => void;
   renderLink?: RenderLink;
   children: ReactNode;
+  footer?: ReactNode;
   isOpen: boolean;
   search: string;
 }
@@ -29,6 +30,7 @@ function CommandPalette({
   renderLink,
   children,
   isOpen,
+  footer,
   search,
 }: CommandPaletteProps) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -215,6 +217,8 @@ function CommandPalette({
                         </SearchContext.Provider>
                       </OpenContext.Provider>
                     </div>
+
+                    {footer}
                   </Dialog.Panel>
                 </Transition.Child>
               </div>
