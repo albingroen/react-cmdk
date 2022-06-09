@@ -114,7 +114,7 @@ const Example = () => {
       {filteredItems.length ? (
         filteredItems.map((list) => (
           <CommandPalette.List key={list.id} heading={list.heading}>
-            {list.items.map(({ id, ...rest }, i) => (
+            {list.items.map(({ id, ...rest }) => (
               <CommandPalette.ListItem
                 key={id}
                 index={getItemIndex(filteredItems, id)}
@@ -145,7 +145,7 @@ useEffect(() => {
       e.preventDefault();
       e.stopPropagation();
 
-      setIsOpen((currentValue) => {
+      setOpen((currentValue) => {
         return !currentValue;
       });
     }
