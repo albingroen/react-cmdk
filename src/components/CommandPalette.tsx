@@ -26,7 +26,7 @@ interface CommandPaletteProps {
   selected?: number;
   isOpen: boolean;
   search: string;
-  page?: string;
+  placeholder?: string;
 }
 
 function CommandPalette({
@@ -39,7 +39,7 @@ function CommandPalette({
   isOpen,
   footer,
   search,
-  page,
+  placeholder = "Search",
 }: CommandPaletteProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -199,7 +199,7 @@ function CommandPalette({
                           }
                         }}
                         id="command-palette-search-input"
-                        placeholder="Search"
+                        placeholder={placeholder}
                         value={search}
                         type="text"
                         autoFocus
