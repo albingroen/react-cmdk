@@ -4,15 +4,19 @@ import { SearchContext } from "../lib/context";
 
 interface FreeSearchActionProps extends Omit<ButtonProps & LinkProps, "index"> {
   index?: number;
+  label?: string;
 }
 
-export default function FreeSearchAction(props: FreeSearchActionProps) {
+export default function FreeSearchAction({
+  label = "Search for",
+  ...props
+}: FreeSearchActionProps) {
   const { search } = useContext(SearchContext);
 
   return (
     <ListItem index={0} icon="SearchIcon" showType={false} {...props}>
       <span className="max-w-md truncate dark:text-white">
-        Search for <span className="font-semibold">"{search}"</span>
+        {label} <span className="font-semibold">"{search}"</span>
       </span>
     </ListItem>
   );

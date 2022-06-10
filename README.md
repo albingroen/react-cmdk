@@ -189,28 +189,16 @@ useEffect(() => {
 
 ### `CommandPalette`
 
-| name             | type                     | required | default | description                                 |
-| ---------------- | ------------------------ | -------- | ------- | ------------------------------------------- |
-| onChangeSearch   | (value: string) => void  | true     |         | Function for setting search value           |
-| onChangeOpen     | (value: boolean) => void | true     |         | Function for setting open state             |
-| children         | React.ReactNode          | true     |         | Children of command palette                 |
-| isOpen           | boolean                  | true     |         | Open state                                  |
-| search           | string                   | true     |         | Search state                                |
-| page             | string                   | false    |         | The current page id                         |
-| renderLink       | RenderLink               | false    |         | Function for customizing rendering of links |
-| footer           | React.ReactNode          | false    |         | Footer component                            |
-| selected         | number                   | false    |         | The current selected item index             |
-| onChangeSelected | (value: number) => void  | false    |         | Function for setting selected item index    |
-
-### `CommandPalette.Page`
-
-FYI. Using pages is completely optional
-
-| name     | type            | required | default | description                             |
-| -------- | --------------- | -------- | ------- | --------------------------------------- |
-| children | React.ReactNode | true     |         | Children of the list                    |
-| id       | string          | true     |         | A unique page id                        |
-| onEscape | () => void      | false    |         | Function that runs upon clicking escape |
+| name           | type                     | required | default    | description                                 |
+| -------------- | ------------------------ | -------- | ---------- | ------------------------------------------- |
+| onChangeSearch | (value: string) => void  | true     |            | Function for setting search value           |
+| onChangeOpen   | (value: boolean) => void | true     |            | Function for setting open state             |
+| children       | React.ReactNode          | true     |            | Children of command palette                 |
+| isOpen         | boolean                  | true     |            | Open state                                  |
+| search         | string                   | true     |            | Search state                                |
+| placeholder    | string                   | false    | `"Search"` | Search field placeholder                    |
+| renderLink     | RenderLink               | false    |            | Function for customizing rendering of links |
+| footer         | React.ReactNode          | false    |            | Footer component                            |
 
 ### `CommandPalette.List`
 
@@ -232,6 +220,15 @@ FYI. Using pages is completely optional
 | keywords      | Array<string>        | false    |            | Underlying search keywords for the list item    |
 
 The list item also extends the `HTMLAnchorElement & HTMLButtonElement` types
+
+### `CommandPalette.FreeSearchAction`
+
+| name           | type                     | required | default    | description                          |
+| ---------- | ------------------------ | -------- | -------------- | -------------------------------------|
+| index      | number                   | false    | `0`            | Index for list item                  |
+| label      | string                   | false    | `"Search for"` | Button label                         |
+
+The search action also extends the `HTMLAnchorElement & HTMLButtonElement` types
 
 ### `RenderLink`
 
