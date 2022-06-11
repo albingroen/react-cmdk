@@ -1,6 +1,6 @@
 {
   "name": "react-cmdk",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "A fast, accessible, and pretty React.js command palette",
   "homepage": "https://react-cmdk.com",
   "main": "dist/index.js",
