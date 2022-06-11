@@ -2,7 +2,7 @@ import FreeSearchAction from "./FreeSearchAction";
 import Icon from "./Icon";
 import List from "./List";
 import ListItem from "./ListItem";
-import React, { ReactNode, useRef, useState, useEffect, Fragment } from "react";
+import React, { ReactNode, useRef, useEffect, Fragment, useState } from "react";
 import { RenderLink } from "../types";
 import {
   OpenContext,
@@ -15,16 +15,20 @@ import { Transition, Dialog } from "@headlessui/react";
 import { XCircleIcon } from "@heroicons/react/solid";
 
 interface CommandPaletteProps {
+  onChangeSelected?: (value: number) => void;
   onChangeSearch: (search: string) => void;
   onChangeOpen: (isOpen: boolean) => void;
   renderLink?: RenderLink;
   children: ReactNode;
   footer?: ReactNode;
+  selected?: number;
   isOpen: boolean;
   search: string;
 }
 
 function CommandPalette({
+  selected: selectedParent,
+  onChangeSelected,
   onChangeSearch,
   onChangeOpen,
   renderLink,
@@ -34,7 +38,11 @@ function CommandPalette({
   search,
 }: CommandPaletteProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [selected, setSelected] = useState<number>(0);
+
+  const [selected, setSelected] =
+    typeof selectedParent === "number" && onChangeSelected
+      ? [selectedParent, onChangeSelected]
+      : useState<number>(0);
 
   function handleChangeSelected(direction?: "up" | "down") {
     const items = document.querySelectorAll(".command-palette-list-item");

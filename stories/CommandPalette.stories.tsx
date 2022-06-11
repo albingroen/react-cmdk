@@ -1,4 +1,8 @@
-import CommandPalette, { JsonStructure, getItemIndex, filterItems } from "../";
+import CommandPalette, {
+  JsonStructure,
+  getItemIndex,
+  filterItems,
+} from "../src";
 import { Meta, Story } from "@storybook/react";
 import { useEffect, useState } from "react";
 
@@ -11,8 +15,9 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story<any> = () => {
-  const [search, setSearch] = useState<string>("");
+  const [selected, setSelected] = useState<number>(0);
   const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -41,7 +46,7 @@ const Template: Story<any> = () => {
           id: "welcome",
           children: <Welcome />,
           showType: false,
-          keywords: ["*"],
+          keywords: ["Welcome"],
           onClick: () => {
             alert("welcome!");
           },
@@ -134,13 +139,20 @@ const Template: Story<any> = () => {
         width: "100vw",
         background: "#E5E7EB",
         boxSizing: "border-box",
-        margin: 0,
         padding: 0,
+        margin: 0,
       }}
     >
       <CommandPalette
+        onChangeSelected={setSelected}
         onChangeSearch={setSearch}
-        onChangeOpen={setIsOpen}
+        onChangeOpen={(value) => {
+          setIsOpen(value);
+          if (!value) {
+            setSelected(0);
+          }
+        }}
+        selected={selected}
         search={search}
         isOpen={isOpen}
         footer={
