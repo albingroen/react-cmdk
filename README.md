@@ -1,3 +1,5 @@
+<img width="750" src="https://res.cloudinary.com/albin-groen/image/upload/v1654800612/react-cmdk-og_yyd4kb.png" />
+
 # A command palette for React
 
 A package with components for building your dream command palette for your web application.
@@ -124,7 +126,7 @@ const Example = () => {
           </CommandPalette.List>
         ))
       ) : (
-        <CommandPalette.FreeSearchAction index={0} />
+        <CommandPalette.FreeSearchAction />
       )}
     </CommandPalette>
   );
