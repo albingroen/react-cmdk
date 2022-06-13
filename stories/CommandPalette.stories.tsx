@@ -2,6 +2,7 @@ import CommandPalette, {
   JsonStructure,
   getItemIndex,
   filterItems,
+  renderJsonStructure,
 } from "../src";
 import { Meta, Story } from "@storybook/react";
 import { useEffect, useState } from "react";
@@ -162,19 +163,7 @@ const Template: Story<any> = () => {
         }
       >
         {filteredItems.length ? (
-          filteredItems.map((list) => {
-            return (
-              <CommandPalette.List heading={list.heading} key={list.id}>
-                {list.items.map(({ id, ...rest }) => (
-                  <CommandPalette.ListItem
-                    index={getItemIndex(filteredItems, id)}
-                    key={id}
-                    {...rest}
-                  />
-                ))}
-              </CommandPalette.List>
-            );
-          })
+          renderJsonStructure(filteredItems)
         ) : (
           <CommandPalette.FreeSearchAction
             href={`https://google.com/?q=${search}`}

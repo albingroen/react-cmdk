@@ -1,3 +1,5 @@
+import CommandPalette from "../components/CommandPalette";
+import React from "react";
 import { Children, ReactNode } from "react";
 import { JsonStructure } from "../types";
 
@@ -88,4 +90,18 @@ export function classNames(
   ...classes: Array<string | null | boolean | undefined>
 ) {
   return classes.filter(Boolean).join(" ");
+}
+
+export function renderJsonStructure(jsonStructure: JsonStructure) {
+  return jsonStructure.map((list) => (
+    <CommandPalette.List heading={list.heading} key={list.id}>
+      {list.items.map(({ id, ...rest }) => (
+        <CommandPalette.ListItem
+          index={getItemIndex(jsonStructure, id)}
+          key={id}
+          {...rest}
+        />
+      ))}
+    </CommandPalette.List>
+  ));
 }

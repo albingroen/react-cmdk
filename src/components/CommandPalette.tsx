@@ -3,13 +3,13 @@ import Icon from "./Icon";
 import List from "./List";
 import ListItem from "./ListItem";
 import React, { ReactNode, useRef, useEffect, Fragment, useState } from "react";
-import { RenderLink } from "../types";
 import {
   OpenContext,
   RenderLinkContext,
   SearchContext,
   SelectContext,
 } from "../lib/context";
+import { RenderLink } from "../types";
 import { SearchIcon } from "@heroicons/react/outline";
 import { Transition, Dialog } from "@headlessui/react";
 import { XCircleIcon } from "@heroicons/react/solid";
