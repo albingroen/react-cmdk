@@ -9,6 +9,7 @@ A package with components for building your dream command palette for your web a
 - [Example usage](#example-usage)
   - [Opening the commane palelette](#opening-the-command-palelette)
 - [API](#api)
+- [Utils](#utils)
 - [Maintainers](#maintainers)
 
 ## Features
@@ -265,7 +266,7 @@ Omits `index` & extends
 
 ## Utils
 
-### getItemIndex
+### `getItemIndex`
 
 A function for getting the current index of a item within the json structure
 
@@ -273,7 +274,7 @@ A function for getting the current index of a item within the json structure
 (items: JsonStructure, listItemId: string, startIndex = 0) => number;
 ```
 
-### filterItems
+### `filterItems`
 
 A function for filtering the json structure from a search string
 
@@ -285,12 +286,18 @@ A function for filtering the json structure from a search string
 ) => JsonStructure;
 ```
 
-### renderJsonStructure
+### `renderJsonStructure`
 
 A function for rendering a json structure
 
 ```typescript
 (items: JsonStructure) => JSX.Element[]
+```
+
+### `useHandleOpenCommandPalette`
+
+```typescript
+(fn: React.Dispatch<React.SetStateAction<boolean>>) => void
 ```
 
 ## Maintainers
