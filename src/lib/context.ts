@@ -5,6 +5,10 @@ export const SelectContext = createContext<{ selected: number }>({
   selected: 0,
 });
 
+export const PageContext = createContext<{ page?: string }>({
+  page: undefined,
+});
+
 export const SearchContext = createContext<{ search: string }>({
   search: "",
 });

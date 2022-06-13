@@ -19,6 +19,7 @@ const Template: Story<any> = () => {
   const [selected, setSelected] = useState<number>(0);
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [search, setSearch] = useState<string>("");
+  const [page, setPage] = useState<"root" | "positions">("root");
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -75,9 +76,12 @@ const Template: Story<any> = () => {
         {
           children: "Positions",
           icon: "BriefcaseIcon",
+          closeOnSelect: false,
           keywords: ["jobs"],
           id: "positions",
-          href: "#",
+          onClick: () => {
+            setPage("positions");
+          },
         },
         {
           children: "Candidates",
@@ -131,7 +135,7 @@ const Template: Story<any> = () => {
     },
   ];
 
-  const filteredItems = filterItems(items, search);
+  const rootItems = filterItems(items, search);
 
   return (
     <div
@@ -147,31 +151,42 @@ const Template: Story<any> = () => {
       <CommandPalette
         onChangeSelected={setSelected}
         onChangeSearch={setSearch}
-        onChangeOpen={(value) => {
-          setIsOpen(value);
-          if (!value) {
-            setSelected(0);
-          }
-        }}
+        onChangeOpen={setIsOpen}
         selected={selected}
         search={search}
         isOpen={isOpen}
+        page={page}
         footer={
           <div style={{ paddingInline: "1rem", paddingBlock: "0.75rem" }}>
             <p>hej</p>
           </div>
         }
       >
-        {filteredItems.length ? (
-          renderJsonStructure(filteredItems)
-        ) : (
-          <CommandPalette.FreeSearchAction
-            href={`https://google.com/?q=${search}`}
-            rel="noopener noreferrer"
-            closeOnSelect={false}
-            target="_blank"
-          />
-        )}
+        <CommandPalette.Page id="root">
+          {rootItems.length ? (
+            renderJsonStructure(rootItems)
+          ) : (
+            <CommandPalette.FreeSearchAction
+              href={`https://google.com/?q=${search}`}
+              rel="noopener noreferrer"
+              closeOnSelect={false}
+              target="_blank"
+            />
+          )}
+        </CommandPalette.Page>
+
+        <CommandPalette.Page
+          id="positions"
+          onEscape={() => {
+            setPage("root");
+          }}
+        >
+          <CommandPalette.List heading="Positions">
+            <CommandPalette.ListItem index={0}>
+              Nothing here
+            </CommandPalette.ListItem>
+          </CommandPalette.List>
+        </CommandPalette.Page>
       </CommandPalette>
     </div>
   );

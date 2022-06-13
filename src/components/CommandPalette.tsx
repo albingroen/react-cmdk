@@ -5,6 +5,7 @@ import ListItem from "./ListItem";
 import React, { ReactNode, useRef, useEffect, Fragment, useState } from "react";
 import {
   OpenContext,
+  PageContext,
   RenderLinkContext,
   SearchContext,
   SelectContext,
@@ -13,6 +14,7 @@ import { RenderLink } from "../types";
 import { SearchIcon } from "@heroicons/react/outline";
 import { Transition, Dialog } from "@headlessui/react";
 import { XCircleIcon } from "@heroicons/react/solid";
+import Page from "./Page";
 
 interface CommandPaletteProps {
   onChangeSelected?: (value: number) => void;
@@ -24,6 +26,7 @@ interface CommandPaletteProps {
   selected?: number;
   isOpen: boolean;
   search: string;
+  page?: string;
 }
 
 function CommandPalette({
@@ -36,6 +39,7 @@ function CommandPalette({
   isOpen,
   footer,
   search,
+  page,
 }: CommandPaletteProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -112,6 +116,10 @@ function CommandPalette({
   useEffect(() => {
     handleChangeSelected();
   }, [search]);
+
+  useEffect(() => {
+    setSelected(0);
+  }, [page]);
 
   return (
     <div
@@ -216,13 +224,17 @@ function CommandPalette({
                       tabIndex={-1}
                     >
                       <OpenContext.Provider value={{ isOpen, onChangeOpen }}>
-                        <SearchContext.Provider value={{ search }}>
-                          <SelectContext.Provider value={{ selected }}>
-                            <RenderLinkContext.Provider value={{ renderLink }}>
-                              {children}
-                            </RenderLinkContext.Provider>
-                          </SelectContext.Provider>
-                        </SearchContext.Provider>
+                        <PageContext.Provider value={{ page }}>
+                          <SearchContext.Provider value={{ search }}>
+                            <SelectContext.Provider value={{ selected }}>
+                              <RenderLinkContext.Provider
+                                value={{ renderLink }}
+                              >
+                                {children}
+                              </RenderLinkContext.Provider>
+                            </SelectContext.Provider>
+                          </SearchContext.Provider>
+                        </PageContext.Provider>
                       </OpenContext.Provider>
                     </div>
 
@@ -238,6 +250,7 @@ function CommandPalette({
   );
 }
 
+CommandPalette.Page = Page;
 CommandPalette.List = List;
 CommandPalette.ListItem = ListItem;
 CommandPalette.Icon = Icon;

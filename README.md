@@ -47,6 +47,7 @@ import CommandPalette, { filterItems, getItemIndex } from "react-cmdk";
 import { useState } from "react";
 
 const Example = () => {
+  const [page, setPage] = useState<"root" | "projects">("root");
   const [open, setOpen] = useState<boolean>(true);
   const [search, setSearch] = useState("");
 
@@ -72,7 +73,10 @@ const Example = () => {
             id: "projects",
             children: "Projects",
             icon: "CollectionIcon",
-            href: "#",
+            closeOnSelect: false,
+            onClick: () => {
+              setPage("projects");
+            },
           },
         ],
       },
@@ -112,22 +116,29 @@ const Example = () => {
       onChangeOpen={setOpen}
       search={search}
       isOpen={open}
+      page={page}
     >
-      {filteredItems.length ? (
-        filteredItems.map((list) => (
-          <CommandPalette.List key={list.id} heading={list.heading}>
-            {list.items.map(({ id, ...rest }) => (
-              <CommandPalette.ListItem
-                key={id}
-                index={getItemIndex(filteredItems, id)}
-                {...rest}
-              />
-            ))}
-          </CommandPalette.List>
-        ))
-      ) : (
-        <CommandPalette.FreeSearchAction />
-      )}
+      <CommandPalette.Page id="root">
+        {filteredItems.length ? (
+          filteredItems.map((list) => (
+            <CommandPalette.List key={list.id} heading={list.heading}>
+              {list.items.map(({ id, ...rest }) => (
+                <CommandPalette.ListItem
+                  key={id}
+                  index={getItemIndex(filteredItems, id)}
+                  {...rest}
+                />
+              ))}
+            </CommandPalette.List>
+          ))
+        ) : (
+          <CommandPalette.FreeSearchAction />
+        )}
+      </CommandPalette.Page>
+
+      <CommandPalette.Page id="projects">
+        {/* Projects page */}
+      </CommandPalette.Page>
     </CommandPalette>
   );
 };
@@ -172,10 +183,21 @@ useEffect(() => {
 | children         | React.ReactNode          | true     |         | Children of command palette                 |
 | isOpen           | boolean                  | true     |         | Open state                                  |
 | search           | string                   | true     |         | Search state                                |
+| page             | string                   | false    |         | The current page                            |
 | renderLink       | RenderLink               | false    |         | Function for customizing rendering of links |
 | footer           | React.ReactNode          | false    |         | Footer component                            |
 | selected         | number                   | false    |         | The current selected item index             |
 | onChangeSelected | (value: number) => void  | false    |         | Function for setting selected item index    |
+
+### `CommandPalette.Page`
+
+FYI. Using pages in completely optional
+
+| name     | type            | required | default | description                             |
+| -------- | --------------- | -------- | ------- | --------------------------------------- |
+| children | React.ReactNode | true     |         | Children of the list                    |
+| id       | string          | true     |         | A unique page id                        |
+| onEscape | () => void      | false    |         | Function that runs upon clicking escape |
 
 ### `CommandPalette.List`
 
