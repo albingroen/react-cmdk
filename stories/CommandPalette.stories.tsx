@@ -1,11 +1,11 @@
 import CommandPalette, {
   JsonStructure,
-  getItemIndex,
   filterItems,
   renderJsonStructure,
+  useHandleOpenCommandPalette,
 } from "../src";
 import { Meta, Story } from "@storybook/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const meta: Meta = {
   title: "CommandPalette",
@@ -21,24 +21,7 @@ const Template: Story<any> = () => {
   const [search, setSearch] = useState<string>("");
   const [page, setPage] = useState<"root" | "positions">("root");
 
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.metaKey && e.key === "k") {
-        e.preventDefault();
-        e.stopPropagation();
-
-        setIsOpen((currentValue) => {
-          return !currentValue;
-        });
-      }
-    }
-
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+  useHandleOpenCommandPalette(setIsOpen);
 
   const items: JsonStructure = [
     {

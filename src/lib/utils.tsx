@@ -1,5 +1,5 @@
 import CommandPalette from "../components/CommandPalette";
-import React from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { Children, ReactNode } from "react";
 import { JsonStructure } from "../types";
 
@@ -104,4 +104,32 @@ export function renderJsonStructure(jsonStructure: JsonStructure) {
       ))}
     </CommandPalette.List>
   ));
+}
+
+export function useHandleOpenCommandPalette(
+  setIsOpen: Dispatch<SetStateAction<boolean>>
+) {
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (
+        (navigator?.platform?.toLowerCase().includes("mac")
+          ? e.metaKey
+          : e.ctrlKey) &&
+        e.key === "k"
+      ) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        setIsOpen((currentValue) => {
+          return !currentValue;
+        });
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 }

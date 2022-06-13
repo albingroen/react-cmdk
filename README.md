@@ -148,17 +148,29 @@ export default Example;
 
 ### Opening the command palelette
 
-The package doesn't include built-in support for opening the comamnd palette,
-so you can open it however you want. Here is and example though.
+The package does include a helper hook for opening the command palette,
+but you can actually open it however you want. Here are some examples.
+
+#### Helper
 
 ```typescript
+const [isOpen, setIsOpen] = useState<boolean>(false);
+
+useHandleOpenCommandPalette(setOpen);
+```
+
+#### Custom
+
+```typescript
+const [isOpen, setIsOpen] = useState<boolean>(false);
+
 useEffect(() => {
   function handleKeyDown(e: KeyboardEvent) {
     if (e.metaKey && e.key === "k") {
       e.preventDefault();
       e.stopPropagation();
 
-      setOpen((currentValue) => {
+      setIsOpen((currentValue) => {
         return !currentValue;
       });
     }
