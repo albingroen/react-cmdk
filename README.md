@@ -195,7 +195,7 @@ useEffect(() => {
 | children         | React.ReactNode          | true     |         | Children of command palette                 |
 | isOpen           | boolean                  | true     |         | Open state                                  |
 | search           | string                   | true     |         | Search state                                |
-| page             | string                   | false    |         | The current page                            |
+| page             | string                   | false    |         | The current page id                         |
 | renderLink       | RenderLink               | false    |         | Function for customizing rendering of links |
 | footer           | React.ReactNode          | false    |         | Footer component                            |
 | selected         | number                   | false    |         | The current selected item index             |
@@ -203,7 +203,7 @@ useEffect(() => {
 
 ### `CommandPalette.Page`
 
-FYI. Using pages in completely optional
+FYI. Using pages is completely optional
 
 | name     | type            | required | default | description                             |
 | -------- | --------------- | -------- | ------- | --------------------------------------- |
