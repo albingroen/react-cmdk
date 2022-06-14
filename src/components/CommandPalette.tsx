@@ -2,7 +2,9 @@ import FreeSearchAction from "./FreeSearchAction";
 import Icon from "./Icon";
 import List from "./List";
 import ListItem from "./ListItem";
-import React, { ReactNode, useRef, useEffect, Fragment, useState } from "react";
+import Page from "./Page";
+import React, { Fragment, ReactNode, useEffect, useRef, useState } from "react";
+import Search from "./Search";
 import {
   OpenContext,
   PageContext,
@@ -11,26 +13,25 @@ import {
   SelectContext,
 } from "../lib/context";
 import { RenderLink } from "../types";
-import { SearchIcon } from "@heroicons/react/outline";
 import { Transition, Dialog } from "@headlessui/react";
-import { XCircleIcon } from "@heroicons/react/solid";
-import Page from "./Page";
 
 interface CommandPaletteProps {
   onChangeSelected?: (value: number) => void;
   onChangeSearch: (search: string) => void;
   onChangeOpen: (isOpen: boolean) => void;
   renderLink?: RenderLink;
+  placeholder?: string;
   children: ReactNode;
   footer?: ReactNode;
   selected?: number;
   isOpen: boolean;
   search: string;
-  placeholder?: string;
+  page?: string;
 }
 
 function CommandPalette({
   selected: selectedParent,
+  placeholder = "Search",
   onChangeSelected,
   onChangeSearch,
   onChangeOpen,
@@ -39,7 +40,7 @@ function CommandPalette({
   isOpen,
   footer,
   search,
-  placeholder = "Search",
+  page,
 }: CommandPaletteProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -47,6 +48,8 @@ function CommandPalette({
     typeof selectedParent === "number" && onChangeSelected
       ? [selectedParent, onChangeSelected]
       : useState<number>(0);
+
+  const [searchPrefix, setSearchPrefix] = useState<string[] | undefined>();
 
   function handleChangeSelected(direction?: "up" | "down") {
     const items = document.querySelectorAll(".command-palette-list-item");
@@ -141,6 +144,8 @@ function CommandPalette({
           e.stopPropagation();
           handleChangeSelected("up");
         } else if (e.key === "Enter") {
+          e.preventDefault();
+          e.stopPropagation();
           handleSelect();
         }
       }}
@@ -179,52 +184,30 @@ function CommandPalette({
                   leaveTo="opacity-0 scale-95"
                 >
                   <Dialog.Panel className="w-full max-h-full bg-white dark:bg-gray-900 shadow-lg rounded-lg max-w-xl flex flex-col overflow-hidden divide-y dark:divide-gray-800">
-                    <div className="relative">
-                      <SearchIcon className="w-4 pointer-events-none text-gray-400 dark:text-gray-600 absolute left-3 top-1/2 transform -translate-y-1/2" />
-                      <input
-                        ref={inputRef}
-                        spellCheck={false}
-                        className="p-3.5 pl-9 border-none w-full focus:outline-none focus:border-none focus:ring-0 bg-transparent placeholder-gray-500 dark:text-white"
-                        onChange={(e) => {
-                          onChangeSearch(e.currentTarget.value);
-                        }}
-                        onFocus={(e) => {
-                          e.currentTarget.select();
-                        }}
-                        onKeyDown={(e) => {
-                          if (e.key === "Escape" && search) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            onChangeSearch("");
-                          }
-                        }}
-                        id="command-palette-search-input"
+                    <PageContext.Provider
+                      value={{
+                        setSearchPrefix,
+                        searchPrefix,
+                        page,
+                      }}
+                    >
+                      <Search
+                        onChange={onChangeSearch}
                         placeholder={placeholder}
+                        prefix={searchPrefix}
                         value={search}
-                        type="text"
-                        autoFocus
+                        ref={inputRef}
                       />
-
-                      {search && (
-                        <button
-                          tabIndex={-1}
-                          type="button"
-                          onClick={() => {
-                            onChangeSearch("");
-                            inputRef.current?.focus();
-                          }}
-                        >
-                          <XCircleIcon className="w-5 text-gray-300 dark:text-gray-600 hover:text-gray-500 dark:hover:text-gray-300 transition absolute right-3 top-1/2 transform -translate-y-1/2" />
-                        </button>
-                      )}
-                    </div>
+                    </PageContext.Provider>
 
                     <div
                       className="flex-1 overflow-y-auto focus:outline-none p-2 space-y-4"
                       tabIndex={-1}
                     >
                       <OpenContext.Provider value={{ isOpen, onChangeOpen }}>
-                        <PageContext.Provider value={{ page }}>
+                        <PageContext.Provider
+                          value={{ page, searchPrefix, setSearchPrefix }}
+                        >
                           <SearchContext.Provider value={{ search }}>
                             <SelectContext.Provider value={{ selected }}>
                               <RenderLinkContext.Provider

@@ -2,13 +2,19 @@ import React, { ReactNode, useContext, useEffect } from "react";
 import { PageContext } from "../lib/context";
 
 interface PageProps {
-  children: ReactNode;
+  searchPrefix?: string[];
   onEscape?: () => void;
+  children: ReactNode;
   id: string;
 }
 
-export default function Page({ children, onEscape, id }: PageProps) {
-  const { page } = useContext(PageContext);
+export default function Page({
+  searchPrefix,
+  children,
+  onEscape,
+  id,
+}: PageProps) {
+  const { page, setSearchPrefix } = useContext(PageContext);
 
   const isActive = page === id;
 
@@ -29,6 +35,12 @@ export default function Page({ children, onEscape, id }: PageProps) {
       };
     }
   }, [isActive]);
+
+  useEffect(() => {
+    if (isActive && setSearchPrefix) {
+      setSearchPrefix(searchPrefix);
+    }
+  }, [searchPrefix, isActive, setSearchPrefix]);
 
   return isActive ? <>{children}</> : null;
 }
