@@ -64,6 +64,7 @@ const Template: Story<any> = () => {
           id: "positions",
           onClick: () => {
             setPage("positions");
+            setSearch("");
           },
         },
         {
@@ -145,7 +146,7 @@ const Template: Story<any> = () => {
           </div>
         }
       >
-        <CommandPalette.Page id="root">
+        <CommandPalette.Page id="root" searchPrefix={["General"]}>
           {rootItems.length ? (
             renderJsonStructure(rootItems)
           ) : (
@@ -159,6 +160,7 @@ const Template: Story<any> = () => {
         </CommandPalette.Page>
 
         <CommandPalette.Page
+          searchPrefix={["General", "Positions"]}
           id="positions"
           onEscape={() => {
             setPage("root");
