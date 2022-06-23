@@ -4,6 +4,9 @@
 
 A package with components for building your dream command palette for your web application.
 
+[YouTube](https://www.youtube.com/watch?v=FN8noNclyoU)
+[Try it out here](https://react-cmdk.com)
+
 - [Features](#features)
 - [Installation](#installation)
 - [Example usage](#example-usage)
