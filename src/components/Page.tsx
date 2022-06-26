@@ -1,5 +1,5 @@
 import React, { ReactNode, useContext, useEffect } from "react";
-import { PageContext } from "../lib/context";
+import { PageContext, SearchContext } from "../lib/context";
 
 interface PageProps {
   searchPrefix?: string[];
@@ -15,6 +15,7 @@ export default function Page({
   id,
 }: PageProps) {
   const { page, setSearchPrefix } = useContext(PageContext);
+  const { search } = useContext(SearchContext);
 
   const isActive = page === id;
 
@@ -22,6 +23,10 @@ export default function Page({
     if (onEscape && isActive) {
       function handleKeyDown(e: KeyboardEvent) {
         if (e.key === "Escape") {
+          e.preventDefault();
+          e.stopPropagation();
+          onEscape!();
+        } else if (e.key === "Backspace" && !search) {
           e.preventDefault();
           e.stopPropagation();
           onEscape!();
@@ -34,7 +39,7 @@ export default function Page({
         document.removeEventListener("keydown", handleKeyDown);
       };
     }
-  }, [isActive]);
+  }, [isActive, search]);
 
   useEffect(() => {
     if (isActive && setSearchPrefix) {
