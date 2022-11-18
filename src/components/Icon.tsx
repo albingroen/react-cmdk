@@ -1,5 +1,5 @@
-import * as HeroIconsOutline from "@heroicons/react/outline";
-import * as HeroIconsSolid from "@heroicons/react/solid";
+import * as HeroIconsOutline from "@heroicons/react/24/outline";
+import * as HeroIconsSolid from "@heroicons/react/20/solid";
 import React, { SVGProps } from "react";
 import { IconName } from "../types";
 

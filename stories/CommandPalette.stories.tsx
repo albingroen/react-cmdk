@@ -6,6 +6,7 @@ import CommandPalette, {
 } from "../src";
 import { Meta, Story } from "@storybook/react";
 import { useState } from "react";
+import React from "react";
 
 const meta: Meta = {
   title: "CommandPalette",
@@ -84,7 +85,7 @@ const Template: Story<any> = () => {
         {
           href: "https://google.com",
           children: "Help",
-          icon: "SupportIcon",
+          icon: "LifebuoyIcon",
           id: "support",
           target: "_blank",
           rel: "noopener noreferrer",

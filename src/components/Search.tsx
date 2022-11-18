@@ -1,6 +1,6 @@
 import React, { forwardRef, Fragment, Ref } from "react";
-import { SearchIcon } from "@heroicons/react/outline";
-import { XCircleIcon } from "@heroicons/react/solid";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { XCircleIcon } from "@heroicons/react/24/solid";
 
 interface SearchProps {
   onChange: (value: string) => void;
@@ -15,7 +15,7 @@ function Search(
 ) {
   return (
     <div className="flex items-center space-x-1.5 pl-3">
-      <SearchIcon className="w-4 pointer-events-none text-gray-400 dark:text-gray-600" />
+      <MagnifyingGlassIcon className="w-4 pointer-events-none text-gray-400 dark:text-gray-600" />
 
       {prefix?.length
         ? prefix.map((p) => {
