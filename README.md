@@ -159,7 +159,7 @@ but you can actually open it however you want. Here are some examples.
 ```typescript
 const [isOpen, setIsOpen] = useState<boolean>(false);
 
-useHandleOpenCommandPalette(setOpen);
+useHandleOpenCommandPalette(setIsOpen);
 ```
 
 #### Custom
