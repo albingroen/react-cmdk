@@ -75,7 +75,7 @@ const Example = () => {
           {
             id: "projects",
             children: "Projects",
-            icon: "CollectionIcon",
+            icon: "RectangleStackIcon",
             closeOnSelect: false,
             onClick: () => {
               setPage("projects");
@@ -90,13 +90,13 @@ const Example = () => {
           {
             id: "developer-settings",
             children: "Developer settings",
-            icon: "CodeIcon",
+            icon: "CodeBracketIcon",
             href: "#",
           },
           {
             id: "privacy-policy",
             children: "Privacy policy",
-            icon: "SupportIcon",
+            icon: "LifebuoyIcon",
             href: "#",
           },
           {
