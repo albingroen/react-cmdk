@@ -169,7 +169,12 @@ const [isOpen, setIsOpen] = useState<boolean>(false);
 
 useEffect(() => {
   function handleKeyDown(e: KeyboardEvent) {
-    if (e.metaKey && e.key === "k") {
+    if (
+      (navigator?.platform?.toLowerCase().includes("mac")
+        ? e.metaKey
+        : e.ctrlKey) &&
+      e.key === "k"
+    ) {
       e.preventDefault();
       e.stopPropagation();
 
