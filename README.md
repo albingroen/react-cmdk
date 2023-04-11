@@ -102,7 +102,7 @@ const Example = () => {
           {
             id: "log-out",
             children: "Log out",
-            icon: "LogoutIcon",
+            icon: "ArrowLeftIcon",
             onClick: () => {
               alert("Logging out...");
             },
