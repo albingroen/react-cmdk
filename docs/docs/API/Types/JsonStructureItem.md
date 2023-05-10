@@ -1,7 +1,7 @@
 # `JsonStructureItem`
 
 :::info
-Extends `CommandPalette.ListItem`, omits `index` & extends
+Extends [`CommandPalette.ListItem`](../CommandPalette/CommandPalette.ListItem), omits `index` & extends
 :::
 
 | name | type   | required | default | description      |

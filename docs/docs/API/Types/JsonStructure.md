@@ -1,6 +1,6 @@
 # `JsonStructure`
 
-Array of
+**`Array`** of the following interface:
 
 | name    | type                       | required | default | description      |
 | ------- | -------------------------- | -------- | ------- | ---------------- |

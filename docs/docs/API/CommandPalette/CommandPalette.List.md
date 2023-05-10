@@ -1,5 +1,6 @@
-
 # `CommandPalette.List`
+
+## Props
 
 | name     | type            | required | default | description          |
 | -------- | --------------- | -------- | ------- | -------------------- |

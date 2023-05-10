@@ -1,5 +1,8 @@
 # `CommandPalette.ListItem`
 
+
+## Props 
+
 | name          | type                 | required | default    | description                                     |
 | ------------- | -------------------- | -------- | ---------- | ----------------------------------------------- |
 | index         | number               | true     |            | Index for list item                             |

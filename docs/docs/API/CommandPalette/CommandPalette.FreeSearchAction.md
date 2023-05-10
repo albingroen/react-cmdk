@@ -1,5 +1,7 @@
 # `CommandPalette.FreeSearchAction`
 
+## Props
+
 | name  | type   | required | default        | description         |
 | ----- | ------ | -------- | -------------- | ------------------- |
 | index | number | false    | `0`            | Index for list item |

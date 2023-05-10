@@ -1,6 +1,8 @@
 
 # `CommandPalette`
 
+## Props
+
 | name             | type                        | required |	default |	description                                 |
 |------------------|-----------------------------|----------|-----------|-----------------------------------------------|
 | onChangeSearch   | (value: string) => void     | true     | 	        |	Function for setting search value           |

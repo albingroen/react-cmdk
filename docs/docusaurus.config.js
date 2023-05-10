@@ -66,12 +66,6 @@ const config = {
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Documentation',
-          },
-          {
             href: 'https://github.com/albingroen/react-cmdk',
             label: 'GitHub',
             position: 'right',
@@ -88,6 +82,14 @@ const config = {
                 label: 'Introduction',
                 to: '/',
               },
+              {
+                label: 'Examples',
+                to: '/examples',
+              },
+              {
+                label: 'API',
+                to: '/API',
+              },
             ],
           },
           {
@@ -100,6 +102,10 @@ const config = {
               {
                 label: 'GitHub',
                 href: 'https://github.com/albingroen/react-cmdk',
+              },
+              {
+                label: 'Maintainers',
+                to: '/maintainers',
               },
             ],
           },
