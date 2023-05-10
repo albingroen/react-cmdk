@@ -10,7 +10,7 @@
 | search           | string                      | true     | 	        |	Search state                                |
 | placeholder      | string                      | false    | `"Search"`|	Search field placeholder                    |
 | page             | string                      | false    | 	        |	The current page id                         |
-| renderLink       | [RenderLink](../../Reference/RenderLink.md)  | false    | 	        |	Function for customizing rendering of links |
+| renderLink       | [RenderLink](../Types/RenderLink)  | false    | 	        |	Function for customizing rendering of links |
 | footer           | React.ReactNode             | false    | 	        |	Footer component                            |
 | selected         | number                      | false    | 	        |	The current selected item index             |
 | onChangeSelected | (value: number) => void     | false    | 	        |	Function for setting selected item index    |

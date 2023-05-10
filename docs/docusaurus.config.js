@@ -9,7 +9,6 @@ const config = {
   title: 'react-cmdk',
   tagline: 'A command palette for React',
   favicon: 'img/favicon.ico',
-
   // Set the production url of your site here
   url: 'https://your-docusaurus-test-site.com',
   // Set the /<baseUrl>/ pathname under which your site is served
@@ -87,7 +86,7 @@ const config = {
             items: [
               {
                 label: 'Introduction',
-                to: '/docs/installation',
+                to: '/',
               },
             ],
           },

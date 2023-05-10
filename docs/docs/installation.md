@@ -19,8 +19,8 @@ Watch the [YouTube demo](https://www.youtube.com/watch?v=FN8noNclyoU) or [try it
 
 * [Examples](./examples)
 * [Opening the commane palelette](./examples#opening-the-command-palelette)
-* [API](./Exports)
-* [Utils](./Exports/utils)
+* [API](./API)
+* [Utils](./API/utils)
 * [Maintainers](./maintainers)
 
 
