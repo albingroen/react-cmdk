@@ -55,8 +55,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.6.4",
-    "@heroicons/react": "^2.0.13",
-    "html-webpack-plugin": "^5.5.0"
+    "@heroicons/react": "^2.0.13"
   },
   "peerDependencies": {
     "react": "^16.x || ^17.x || ^18.x",
