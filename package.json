@@ -38,6 +38,7 @@
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",
     "fork-ts-checker-webpack-plugin": "^7.2.11",
+    "html-webpack-plugin": "^5.5.3",
     "postcss": "^8.4.14",
     "postcss-prefix-selector": "^1.15.0",
     "prettier": "^2.6.2",
@@ -55,8 +56,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.6.4",
-    "@heroicons/react": "^2.0.13",
-    "html-webpack-plugin": "^5.5.0"
+    "@heroicons/react": "^2.0.13"
   },
   "peerDependencies": {
     "react": "^16.x || ^17.x || ^18.x",
