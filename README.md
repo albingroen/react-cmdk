@@ -9,7 +9,7 @@ Watch the [YouTube demo](https://www.youtube.com/watch?v=FN8noNclyoU) or [try it
 - [Features](#features)
 - [Installation](#installation)
 - [Example usage](#example-usage)
-  - [Opening the commane palelette](#opening-the-command-palelette)
+  - [Opening the command palette](#opening-the-command-palette)
 - [API](#api)
 - [Utils](#utils)
 - [Maintainers](#maintainers)
@@ -149,7 +149,7 @@ const Example = () => {
 export default Example;
 ```
 
-### Opening the command palelette
+### Opening the command palette
 
 The package does include a helper hook for opening the command palette,
 but you can actually open it however you want. Here are some examples.
